@@ -1,45 +1,23 @@
 package org.example.cs102proj;
 
-import java.util.*;
+import java.util.ArrayList;
 
-public class Human {
+public class Human extends Player {
 
-    private ArrayList<Card> hand = new ArrayList<>();
-    private String name;
-
-    public Human(ArrayList<Card> hand) {
-        this.hand = hand;
-    }
-
-    public ArrayList<Card> getHand() {
-        return hand;
-    }
-    // Return the current hand of the player
-
-    public Card playCard(Card card) {
-        // Remove the card from current hand
-        hand.remove(card);
-        return card;
-    }
-
-    public void drawCard(Card card) {
-        hand.add(card);
+    public Human(ArrayList<Card> hand, String name) {
+        super(hand, name);
     }
 
     @Override
-    public String toString() {
-        try {
-            StringBuilder sb = new StringBuilder();
-            for (Card c : hand) {
-                sb.append(c).append(", ");
-            }
+    public Card playCard(Card card) {
+        // Check if card can be played by looking at the top of the discard pile. Use a try catch. Return  InvalidCardException
+        // If user chooses a wrong card
+        // TODO: discard pile method so that we can add the played card to the discard pile
 
-            return sb.toString();
-        } catch (NullPointerException e) {
-            System.out.println("No cards in hand!");
-        }
+        // Remove the played card from the hand of the human
+        removeCard(card);
 
-        return "";
+        // Return the card that was played by the player so that it can be used
+        return card;
     }
-
 }
