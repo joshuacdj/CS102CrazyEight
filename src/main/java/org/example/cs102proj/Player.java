@@ -48,6 +48,15 @@ public abstract class Player {
         return name;
     }
 
+    // Calculate the points left in hand of player
+    public int calculatePoints() {
+        int points = 0;
+        for (Card c : hand) {
+            points += c.calculatePoints();
+        }
+        return points;
+    }
+
     @Override
     public String toString() {
         try {

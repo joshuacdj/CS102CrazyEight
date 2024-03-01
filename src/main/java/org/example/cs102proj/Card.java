@@ -20,10 +20,30 @@ public class Card {
     }
     // Return the face value of the card
 
+    // Return the suit of the card
     public Suit getSuit() {
         return suit;
     }
-    // Return the suit of the card
+
+    // Calculate the points associated to each card
+    public int calculatePoints() {
+        int points = 0;
+        switch(value) {
+            case 8:
+                points = 50;
+                break;
+            case 11:
+            case 12:
+            case 13:
+                points = 10;
+                break;
+            default:
+                points = value;
+        }
+        return points;
+    }
+
+
 
     @Override
     public String toString() {

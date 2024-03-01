@@ -32,7 +32,7 @@ public class RemainingPile implements Deck{
         Collections.shuffle(listOfCards);
     }
 
-    public Card getTopCard(ArrayList<Card> listOfCards){
+    public Card getTopCard(){
         //attain top card (i.e. last of list)
         Card c = listOfCards.getLast();
         //remove card from the RemainingPile
@@ -43,6 +43,12 @@ public class RemainingPile implements Deck{
     public int getNoOfCardsRemaining(){
         return listOfCards.size();
     }
+
+    public ArrayList<Card> getListOfCards() {
+        return listOfCards;
+    }
+
+
 
 
 

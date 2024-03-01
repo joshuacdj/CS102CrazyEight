@@ -3,7 +3,6 @@ import java.util.ArrayList;
 
 public class Round {
     private ArrayList<Player> playerPosition;
-    private int roundNumber = 1;
 
     // setter for player position
     public void setPlayerPosition(ArrayList<Player> playerPosition) {
@@ -19,12 +18,13 @@ public class Round {
 
     // set the first card of the round
     public void setFirstCard(RemainingPile remainingPile, DiscardPile discardPile) {
+
         // obtain starting card
         Card startingCard = remainingPile.getTopCard();
 
         // if starting card drawn is 8, put it back into the pile and draw a new starting card
         while (startingCard.getValue() == 8) {
-            remainingPile.add(0, startingCard);
+            remainingPile.getListOfCards().addFirst(startingCard);
             startingCard = remainingPile.getTopCard();
         }
 
@@ -36,17 +36,13 @@ public class Round {
         // create new deck
         RemainingPile remainingPile = new RemainingPile();
 
-        // (TO DO!) add the 52 cards to the new deck
-        remainingPile.addCards();
+        // Store the list of cards from remainingPile
+        ArrayList<Card> cardList = remainingPile.getListOfCards();
+
 
         // shuffle deck
-        remainingPile.shuffleDeck();
+        remainingPile.shuffleDeck(cardList);
 
-        // from round 2 onwards, move player positions down one to change dealer
-        // since in round 1, the dealer is set to be the player
-        if (roundNumber != 1) {
-            setPlayerPosition(playerPosition);
-        }
 
         // create new discard pile
         DiscardPile discardPile = new DiscardPile();
@@ -57,7 +53,7 @@ public class Round {
         // each of the 4 players draws 5 cards
         for (int i = 0; i < 5; i++) {
             for (Player p : playerPosition) {
-                p.drawCard();
+                p.drawCard(remainingPile.getTopCard());
             }
         }
 
@@ -65,6 +61,7 @@ public class Round {
         while (!roundEnd(playerPosition)) {
             for (Player currentPlayer : playerPosition) {
                 // current player makes his move
+                // TODO: Implement player play himself
                 currentPlayer.play();
 
                 // check if player's hand is 0
@@ -74,14 +71,28 @@ public class Round {
             }
         }
 
-        // update round number to move to next round
-        roundNumber++;
+        // At the end of the round, we sum up the points of each player
+        // Loop through each player
+        for (Player p : playerPosition) {
+            int totalPointsForRound = 0;
+
+            // Loop through each card, add the point of each card into totalPointsForRound
+            for (Card c : p.getHand()) {
+
+                totalPointsForRound += c.calculatePoints();
+            }
+
+            // Sum up the total points for each player
+            p.addPoints(totalPointsForRound);
+        }
+
+
 
     }
 
     public boolean roundEnd(ArrayList<Player> playerPosition) {
         for (Player p : playerPosition) {
-            if (p.getHand().size() == 0) {
+            if (p.getHand().isEmpty()) {
                 return true;
             }
         }
