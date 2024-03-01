@@ -30,7 +30,7 @@ public abstract class Player {
 //    returns card if player plays a card, else returns false if player skips turn (drew 5 cards)
     public abstract Card action(Card card, RemainingPile deck);
 
-    // Draw a card from the deck oh no
+    // Draw a card from the deck
     public void drawCard(Card card) {
         hand.add(card);
     }
