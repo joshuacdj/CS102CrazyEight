@@ -2,12 +2,10 @@ package org.example.cs102proj;
 
 import java.util.*;
 
-import static org.example.cs102proj.Card.Suit.*;
-
 public class DiscardPile implements Deck{
     private ArrayList<Card> listOfCards = new ArrayList<>();
     private int topCardValue;
-    private Card.Suit topCardSuit;
+    private Suit topCardSuit;
 
     public void addCard(Card c){
         listOfCards.add(c);
@@ -25,16 +23,16 @@ public class DiscardPile implements Deck{
             //
             switch(suitName){
                 case("DIAMONDS"):
-                    topCardSuit = DIAMONDS;
+                    topCardSuit = Suit.DIAMONDS;
                     break;
                 case("CLUBS"):
-                    topCardSuit = CLUBS;
+                    topCardSuit = Suit.CLUBS;
                     break;
                 case("HEARTS"):
-                    topCardSuit = HEARTS;
+                    topCardSuit = Suit.HEARTS;
                     break;
                 case("SPADES"):
-                    topCardSuit = SPADES;
+                    topCardSuit = Suit.SPADES;
                     break;
             }
         }else{
@@ -46,7 +44,7 @@ public class DiscardPile implements Deck{
         return topCardValue;
     }
 
-    public Card.Suit getTopCardSuit(){
+    public Suit getTopCardSuit(){
         return topCardSuit;
     }
 

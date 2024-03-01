@@ -4,12 +4,6 @@ public class Card {
     /**
      * Stores value of a singular card
      */
-    public enum Suit
-    {
-        DIAMONDS, CLUBS, HEARTS, SPADES;
-    }
-    // Enum representing playing card suits
-
     private final int value;
     private final Suit suit;
     // Instance of value and suit
