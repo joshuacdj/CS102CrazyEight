@@ -10,9 +10,8 @@ public class Human extends Player {
 
     @Override
     public Card playCard(Card card) {
-        // Check if card can be played by looking at the top of the discard pile. Use a try catch. Return  InvalidCardException
+        // Check if card can be played by looking at the top of the discard pile. Use a try catch. Return InvalidCardException
         // If user chooses a wrong card
-        // TODO: discard pile method so that we can add the played card to the discard pile
 
         // Remove the played card from the hand of the human
         removeCard(card);
