@@ -1,3 +1,4 @@
+package org.example.cs102proj;
 import java.util.ArrayList;
 
 public class Round {
@@ -16,10 +17,10 @@ public class Round {
         playerPosition.add(first);
     }
 
-    // setter the first card of the round
+    // set the first card of the round
     public void setFirstCard(RemainingPile remainingPile, DiscardPile discardPile) {
         // obtain starting card
-        startingCard = remainingPile.getTopCard();
+        Card startingCard = remainingPile.getTopCard();
 
         // if starting card drawn is 8, put it back into the pile and draw a new starting card
         while (startingCard.getValue() == 8) {
