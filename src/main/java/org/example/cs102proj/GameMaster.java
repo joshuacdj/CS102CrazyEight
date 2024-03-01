@@ -5,7 +5,6 @@ import java.util.ArrayList;
 public class GameMaster {
 
     private ArrayList<Player> listOfPlayers;
-    private final int maximumPoints = 100;
 
     GameMaster(ArrayList<Player> listOfPlayers) {
         this.listOfPlayers = listOfPlayers;
@@ -18,6 +17,7 @@ public class GameMaster {
     //Checks if game has ended by checking if
     //any player has >= maximumPoints allowed
     boolean gameEnd() {
+        final int MAXIMUMPOINTS = 100;
 
         //Initialise end to false
         boolean end = false;
@@ -26,7 +26,7 @@ public class GameMaster {
         for (Player currentPlayer : listOfPlayers) {
 
             //If the current player's score exceeds the maximum allowed, game will end
-            if (currentPlayer.getPoints() >= maximumPoints) {
+            if (currentPlayer.getPoints() >= MAXIMUMPOINTS) {
                 return true;
             }
         }
