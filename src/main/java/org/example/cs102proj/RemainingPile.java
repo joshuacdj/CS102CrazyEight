@@ -16,7 +16,7 @@ public class RemainingPile implements Deck{
         Collections.shuffle(listOfCards);
     }
 
-    public Card drawCard(ArrayList<Card> listOfCards){
+    public Card getTopCard(ArrayList<Card> listOfCards){
         //attain top card (i.e. last of list)
         Card c = listOfCards.getLast();
         //remove card from the RemainingPile
