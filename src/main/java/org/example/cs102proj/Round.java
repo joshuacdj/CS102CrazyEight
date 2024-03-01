@@ -62,7 +62,10 @@ public class Round {
             for (Player currentPlayer : playerPosition) {
                 // current player makes his move
                 // TODO: Implement player play himself
-                currentPlayer.play();
+                Card cardPlayed = currentPlayer.play();
+                if (cardPlayed == null) {
+                    discardPile.addCard(cardPlayed);
+                }
 
                 // check if player's hand is 0
                 if (roundEnd(playerPosition)) {

@@ -6,6 +6,7 @@ public abstract class Player {
 
     // Each player will have a hand, a name and their total points for a game
     private ArrayList<Card> hand = new ArrayList<>();
+    private ArrayList<Card> playableCards = new ArrayList<>();
     private String name;
     private int points;
 
@@ -21,12 +22,13 @@ public abstract class Player {
         return hand;
     }
 
+    // Remove the card from current hand
     public void removeCard(Card card) {
         hand.remove(card);
     }
 
-    public abstract Card playCard(Card card);
-    // Remove the card from current hand
+//    returns card if player plays a card, else returns false if player skips turn (drew 5 cards)
+    public abstract Card action(Card card, RemainingPile deck);
 
     // Draw a card from the deck
     public void drawCard(Card card) {
@@ -48,13 +50,35 @@ public abstract class Player {
         return name;
     }
 
-    // Calculate the points left in hand of player
+    // Calculate the points in player's hand
     public int calculatePoints() {
         int points = 0;
         for (Card c : hand) {
             points += c.calculatePoints();
         }
         return points;
+    }
+
+//    how card is deemed playable
+    public boolean isPlayable (Card currCard, Card topCard) {
+        if (currCard.getValue() == topCard.getValue()) {
+            return true;
+        } else if (currCard.getSuit() == topCard.getSuit()) {
+            return true;
+        } else return currCard.getValue() == 8;
+    }
+
+    //    create playable cards list
+    public void setPlayableCards (Card topCard) {
+        for (Card card : getHand()) {
+            if (isPlayable(card, topCard)) {
+                playableCards.add(card);
+            }
+        }
+    }
+
+    public ArrayList<Card> getPlayableCards() {
+        return playableCards;
     }
 
     @Override
