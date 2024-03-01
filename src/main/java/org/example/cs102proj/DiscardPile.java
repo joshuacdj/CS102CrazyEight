@@ -2,8 +2,6 @@ package org.example.cs102proj;
 
 import java.util.*;
 
-import static org.example.cs102proj.Card.Suit.*;
-
 public class DiscardPile implements Deck{
     private ArrayList<Card> listOfCards = new ArrayList<>();
     private Card topCard;
@@ -15,11 +13,11 @@ public class DiscardPile implements Deck{
         }else{
             Scanner sc = new Scanner(System.in);
             String suitName = sc.nextLine();
-            Card.Suit suit = switch (suitName) {
-                case ("DIAMONDS") -> DIAMONDS;
-                case ("CLUBS") -> CLUBS;
-                case ("HEARTS") -> HEARTS;
-                case ("SPADES") -> SPADES;
+            Suit suit = switch (suitName) {
+                case ("DIAMONDS") -> Suit.DIAMONDS;
+                case ("CLUBS") -> Suit.CLUBS;
+                case ("HEARTS") -> Suit.HEARTS;
+                case ("SPADES") -> Suit.SPADES;
                 default -> c.getSuit();
             };
             //
