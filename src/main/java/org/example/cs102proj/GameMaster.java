@@ -1,3 +1,5 @@
+package org.example.cs102proj;
+
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 public class GameMaster {
@@ -5,12 +7,12 @@ public class GameMaster {
     private ArrayList<Player> listOfPlayers;
     private final int maximumPoints = 100;
 
-    public ArrayList<Player> getListOfPlayers() {
-        return listOfPlayers;
+    GameMaster(ArrayList<Player> listOfPlayers) {
+        this.listOfPlayers = listOfPlayers;
     }
 
-    public void setListOfPlayers(ArrayList<Player> listOfPlayers) {
-        this.listOfPlayers = listOfPlayers;
+    public ArrayList<Player> getListOfPlayers() {
+        return listOfPlayers;
     }
 
     //Checks if game has ended by checking if
@@ -21,13 +23,10 @@ public class GameMaster {
         boolean end = false;
 
         //Loop for all players playing
-        for (int i = 0; i < listOfPlayers.size(); i++) {
-
-            //Initialise the currentPlayer being checked
-            Player currentPlayer = listOfPlayers.get(i);
+        for (Player currentPlayer : listOfPlayers) {
 
             //If the current player's score exceeds the maximum allowed, game will end
-            if (currentPlayer.getPoints >= maximumPoints) {
+            if (currentPlayer.getPoints() >= maximumPoints) {
                 return true;
             }
         }
