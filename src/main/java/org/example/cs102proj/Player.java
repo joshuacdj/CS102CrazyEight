@@ -21,9 +21,12 @@ public abstract class Player {
         return hand;
     }
 
+    public void removeCard(Card card) {
+        hand.remove(card);
+    }
 
     public abstract Card playCard(Card card);
-        // Remove the card from current hand
+    // Remove the card from current hand
 
     // Draw a card from the deck
     public void drawCard(Card card) {
