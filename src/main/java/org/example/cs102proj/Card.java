@@ -48,7 +48,6 @@ public class Card {
     }
 
 
-
     @Override
     public String toString() {
         return String.format("value: %d suit: %s%n", value, suit);

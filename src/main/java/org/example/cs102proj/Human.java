@@ -19,12 +19,13 @@ public class Human extends Player {
 //        Handles cases where I do not have a playable card
         while (getPlayableCards().isEmpty() && cardsDrawn < 5) {
 
-            System.out.print("Input Action: Draw or Play");
+            System.out.print("Input Action: Draw or Play?");
 
             // Get user input
             String a = sc.nextLine();
 
             if (a.equals("Draw")) {
+                sc.nextLine();
                 drawCard(deck.getTopCard());
                 cardsDrawn++;
             } else {
@@ -40,12 +41,15 @@ public class Human extends Player {
 
             // Can only play and not draw
             do {
-                System.out.println("Input Action: Draw or Play");
+                System.out.println("Input Action: Draw or Play? ");
 
                 String a = sc.nextLine();
 
                 if (!a.equals("Play")) {
+                    System.out.println("Please input play");
                     validAction = false;
+                } else {
+                    validAction = true;
                 }
 
             } while (!validAction);
@@ -55,6 +59,13 @@ public class Human extends Player {
             for (Card c : getHand()) {
                 System.out.println(c);
             }
+
+            // Print the playable cards
+            System.out.println("Playable Cards:");
+            for (Card c : getPlayableCards()) {
+                System.out.println(c);
+            }
+
 
             do {
                 // Get value
@@ -84,19 +95,32 @@ public class Human extends Player {
         return null;
     }
 
-    public static void main(String[] args) {
-
-        ArrayList<Card> hand = new ArrayList<>();
-        hand.add(new Card(3, Suit.DIAMONDS));
-        hand.add(new Card(7, Suit.DIAMONDS));
-        hand.add(new Card(3, Suit.HEARTS));
-        hand.add(new Card(4, Suit.CLUBS));
-        hand.add(new Card(8, Suit.DIAMONDS));
-
-        Human h = new Human(hand, "tommy");
-
-        DrawPile rp =  new DrawPile();
-
-        h.action(rp.getTopCard(), rp);
-    }
+    // Testing Code
+//    public static void main(String[] args) {
+//
+//        ArrayList<Card> hand = new ArrayList<>();
+//        Card c1 = new Card(3, Suit.DIAMONDS);
+//        Card c2 = new Card(4, Suit.HEARTS);
+//        Card c3 = new Card(7, Suit.CLUBS);
+//        Card c4 = new Card(8, Suit.HEARTS);
+//        Card c5 = new Card(5, Suit.SPADES);
+//
+//        hand.add(c1);
+//        hand.add(c2);
+//        hand.add(c3);
+//        hand.add(c4);
+//        hand.add(c5);
+//
+//        Human h = new Human(hand, "tommy");
+//
+//        DrawPile rp =  new DrawPile();
+//
+//        rp.getListOfCards().remove(c1);
+//        rp.getListOfCards().remove(c2);
+//        rp.getListOfCards().remove(c3);
+//        rp.getListOfCards().remove(c4);
+//        rp.getListOfCards().remove(c5);
+//
+//        h.action(rp.getTopCard(), rp);
+//    }
 }
