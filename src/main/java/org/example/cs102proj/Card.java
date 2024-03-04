@@ -43,6 +43,10 @@ public class Card {
         return points;
     }
 
+    public boolean equals(Card c) {
+        return c.getValue() == value && c.getSuit().equals(suit);
+    }
+
 
 
     @Override
