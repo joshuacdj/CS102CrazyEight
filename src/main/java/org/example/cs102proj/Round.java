@@ -38,7 +38,7 @@ public class Round {
         if (drawPile.getNoOfCardsRemaining() <= 5) {
             discardPile.shuffleDeck();
             for (Card cards : discardPile.getCards()) {
-                drawPile.add(cards);
+//                drawPile.add(cards);
             }
             discardPile.clearPile();
         }
@@ -61,7 +61,7 @@ public class Round {
 
 
         // shuffle deck
-        drawPile.shuffleDeck(cardList);
+        drawPile.shuffleDeck();
 
 
         // create new discard pile
@@ -82,7 +82,7 @@ public class Round {
             for (Player currentPlayer : playerPosition) {
                 // current player makes his move
                 // TODO: Implement player play himself
-                Card cardPlayed = currentPlayer.play();
+//                Card cardPlayed = currentPlayer.play();
 
                 checkPileSize(drawPile, discardPile);
 
