@@ -91,7 +91,8 @@ public class Round {
             p.addPoints(totalPointsForRound);
         }
 
-
+        // player positions change
+        setPlayerPosition(playerPosition);
 
     }
 
