@@ -36,11 +36,7 @@ public class Round {
 
     public void checkPileSize(DrawPile drawPile, DiscardPile discardPile) {
         if (drawPile.getNoOfCardsRemaining() <= 5) {
-            discardPile.shuffleDeck();
-            for (Card cards : discardPile.getCards()) {
-//                drawPile.add(cards);
-            }
-            discardPile.clearPile();
+            discardPile.transferTo(drawPile);
         }
     }
 
