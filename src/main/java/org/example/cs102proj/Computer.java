@@ -10,17 +10,21 @@ public class Computer extends Player {
         super(hand, name);
     }
 
-    public Card action(Card topCard, RemainingPile deck) {
+    public Card action(Card lastPlayedCard, DrawPile deck) {
         int cardsDrawn = 0;
 //        set list of playable cards
-        setPlayableCards(topCard);
+        setPlayableCards(lastPlayedCard);
+        System.out.println(getPlayableCards());
 //        check if there are playable cards in hand
-        while (!(getPlayableCards().contains(topCard)) && cardsDrawn < 5) {
+        while (getPlayableCards().isEmpty() && cardsDrawn < 5) {
+            System.out.println(cardsDrawn);
             drawCard(deck.getTopCard());
+            setPlayableCards(lastPlayedCard);
             cardsDrawn++;
         }
-        if (cardsDrawn < 5) {
-            //            choose to discard the card worth the most points
+//        check if player drew 5 cards
+        if (cardsDrawn <= 5) {
+//            choose to discard the card worth the most points
             for (Card card : getPlayableCards()) {
                 if (card.getValue() == 8) {
                     removeCard(card);
@@ -33,5 +37,6 @@ public class Computer extends Player {
         }
         return null;
     }
+
 }
 

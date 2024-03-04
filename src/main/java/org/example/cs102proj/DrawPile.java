@@ -3,14 +3,10 @@ package org.example.cs102proj;
 import java.util.*;
 import java.util.Collections;
 
-
-import java.util.*;
-import java.util.Collections;
-
-public class RemainingPile implements Deck{
+public class DrawPile implements Deck{
     private ArrayList<Card> listOfCards;
 
-    public RemainingPile() {
+    public DrawPile() {
         listOfCards = new ArrayList<>();
 
         for (int i = 1; i <= 13; i++) {
@@ -47,9 +43,4 @@ public class RemainingPile implements Deck{
     public ArrayList<Card> getListOfCards() {
         return listOfCards;
     }
-
-
-
-
-
 }

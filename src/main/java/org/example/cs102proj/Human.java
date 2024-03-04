@@ -9,7 +9,7 @@ public class Human extends Player {
     }
 
     @Override
-    public Card action(Card card, RemainingPile deck) {
+    public Card action(Card card, DrawPile deck) {
         // Check if card can be played by looking at the top of the discard pile. Use a try catch. Return InvalidCardException
         // If user chooses a wrong card
 
