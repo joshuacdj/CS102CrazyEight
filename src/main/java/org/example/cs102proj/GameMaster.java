@@ -23,9 +23,6 @@ public class GameMaster {
 
         // Loop for all players playing
         for (Player currentPlayer : listOfPlayers) {
-            
-            //If the current player's score exceeds the maximum allowed, game will end
-            if (currentPlayer.getPoints() >= MAXIMUMPOINTS) {
 
             // If the current player's score exceeds the maximum allowed, game will end
             if (currentPlayer.getPoints() >= MAXIMUMPOINTS) {
