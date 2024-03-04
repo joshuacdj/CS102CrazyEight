@@ -27,6 +27,7 @@ public class Human extends Player {
             if (a.equals("Draw")) {
                 sc.nextLine();
                 drawCard(deck.getTopCard());
+                setPlayableCards(topCard);
                 cardsDrawn++;
             } else {
                 System.out.println("No playable cards, please input draw only");
@@ -35,9 +36,10 @@ public class Human extends Player {
         }
 
         // If I have a playable card
-        if (cardsDrawn < 5) {
+        if (cardsDrawn <= 5) {
 
             boolean validAction = true;
+            ArrayList<Object> output = new ArrayList<>();
 
             // Can only play and not draw
             do {
@@ -67,7 +69,7 @@ public class Human extends Player {
             }
 
 
-            do {
+            while (true) {
                 // Get value
                 System.out.print("Choose a value: ");
                 int value = Integer.parseInt(sc.nextLine());
@@ -83,12 +85,20 @@ public class Human extends Player {
 
                     if (c.equals(inputCard)) {
                         removeCard(c);
-//                        return c;
+                        output.add(c);
+//                        if card is an 8, additionally ask player for suit
+                        if (c.getValue() == 8) {
+                            System.out.println("Choose a suit: ");
+                            Suit desiredSuit = Suit.valueOf(sc.nextLine());
+                            output.add(desiredSuit);
+                        }
+                        else {
+                            output.add(c.getSuit());
+                        }
+                        return output;
                     }
                 }
-
-                validAction = false;
-            } while (!validAction);
+            }
 
 
         }
