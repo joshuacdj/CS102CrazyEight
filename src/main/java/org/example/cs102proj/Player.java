@@ -17,27 +17,39 @@ public abstract class Player {
         this.points = 0;
     }
 
-    // Return the current hand of the player
-    public ArrayList<Card> getHand() {
-        return hand;
-    }
-
-    // Remove the card from current hand
-    public void removeCard(Card card) {
-        hand.remove(card);
-    }
-
     // Returns card if player plays a card, else returns false if player skips turn (drew 5 cards)
     public abstract Card action(Card card, DrawPile deck);
+
+    // Add points to the player depending on the value of the cards left in their hand at the end of a round
+    public void addPoints(int points) {
+        this.points += points;
+    }
+
+    // Calculate the points in player's hand
+    public int calculatePoints() {
+        int points = 0;
+        for (Card c : hand) {
+            points += c.calculatePoints();
+        }
+        return points;
+    }
+
+    public void clearHand() {
+        hand.clear();
+    }
 
     // Draw a card from the deck
     public void drawCard(Card card) {
         hand.add(card);
     }
 
-    // Add points to the player depending on the value of the cards left in their hand at the end of a round
-    public void addPoints(int points) {
-        this.points += points;
+    // Return the current hand of the player
+    public ArrayList<Card> getHand() {
+        return hand;
+    }
+
+    public ArrayList<Card> getPlayableCards() {
+        return playableCards;
     }
 
     // Return the points accumulated by the player in total for that game
@@ -50,15 +62,6 @@ public abstract class Player {
         return name;
     }
 
-    // Calculate the points in player's hand
-    public int calculatePoints() {
-        int points = 0;
-        for (Card c : hand) {
-            points += c.calculatePoints();
-        }
-        return points;
-    }
-
     // How card is deemed playable
     public boolean isPlayable (Card currCard, Card lastPlayedCard) {
         if (currCard.getValue() == lastPlayedCard.getValue()) {
@@ -66,6 +69,11 @@ public abstract class Player {
         } else if (currCard.getSuit() == lastPlayedCard.getSuit()) {
             return true;
         } else return currCard.getValue() == 8;
+    }
+
+    // Remove the card from current hand
+    public void removeCard(Card card) {
+        hand.remove(card);
     }
 
     //    Create playable cards list
@@ -77,11 +85,6 @@ public abstract class Player {
         }
     }
 
-    public ArrayList<Card> getPlayableCards() {
-        return playableCards;
-    }
-
-    // TODO: add method to clear hand (when start of a new round)
 
     @Override
     public String toString() {
