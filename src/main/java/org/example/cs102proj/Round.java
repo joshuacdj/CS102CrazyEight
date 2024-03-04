@@ -34,11 +34,11 @@ public class Round {
         discardPile.addCard(startingCard);
     }
 
-    public void checkPileSize(RemainingPile remainingPile, DiscardPile discardPile) {
-        if (remainingPile.getNoOfCardsRemaining() <= 5) {
+    public void checkPileSize(DrawPile drawPile, DiscardPile discardPile) {
+        if (drawPile.getNoOfCardsRemaining() <= 5) {
             discardPile.shuffleDeck();
             for (Card cards : discardPile.getCards()) {
-                remainingPile.add(cards);
+                drawPile.add(cards);
             }
             discardPile.clearPile();
         }
@@ -84,7 +84,7 @@ public class Round {
                 // TODO: Implement player play himself
                 Card cardPlayed = currentPlayer.play();
 
-                checkPileSize(remainingPile, discardPile);
+                checkPileSize(drawPile, discardPile);
 
                 // check if player's hand is 0
                 if (roundEnd()) {
