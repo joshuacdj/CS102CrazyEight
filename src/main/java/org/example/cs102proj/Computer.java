@@ -14,10 +14,8 @@ public class Computer extends Player {
         int cardsDrawn = 0;
 //        set list of playable cards
         setPlayableCards(lastPlayedCard);
-        System.out.println(getPlayableCards());
 //        check if there are playable cards in hand
         while (getPlayableCards().isEmpty() && cardsDrawn < 5) {
-            System.out.println(cardsDrawn);
             drawCard(deck.getTopCard());
             setPlayableCards(lastPlayedCard);
             cardsDrawn++;
