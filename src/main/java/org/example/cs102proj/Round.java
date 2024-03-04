@@ -36,13 +36,8 @@ public class Round {
         // create new deck
         RemainingPile remainingPile = new RemainingPile();
 
-        // Store the list of cards from remainingPile
-        ArrayList<Card> cardList = remainingPile.getListOfCards();
-
-
         // shuffle deck
-        remainingPile.shuffleDeck(cardList);
-
+        remainingPile.shuffleDeck();
 
         // create new discard pile
         DiscardPile discardPile = new DiscardPile();
