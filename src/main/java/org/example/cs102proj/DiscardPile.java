@@ -38,7 +38,10 @@ public class DiscardPile implements Deck{
         Collections.shuffle(listOfCards);
     }
 
-    public void clearPile() {
-        listOfCards.clear();
+    public void transferTo(DrawPile drawPile) {
+        for(int i = 0; i < listOfCards.size() - 1; i++){
+            drawPile.add(listOfCards.getFirst());
+            listOfCards.removeFirst();
+        }
     }
 }
