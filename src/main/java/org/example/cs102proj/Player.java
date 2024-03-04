@@ -27,8 +27,8 @@ public abstract class Player {
         hand.remove(card);
     }
 
-//    returns card if player plays a card, else returns false if player skips turn (drew 5 cards)
-    public abstract Card action(Card card, RemainingPile deck);
+    // Returns card if player plays a card, else returns false if player skips turn (drew 5 cards)
+    public abstract Card action(Card card, DrawPile deck);
 
     // Draw a card from the deck
     public void drawCard(Card card) {
@@ -59,19 +59,19 @@ public abstract class Player {
         return points;
     }
 
-//    how card is deemed playable
-    public boolean isPlayable (Card currCard, Card topCard) {
-        if (currCard.getValue() == topCard.getValue()) {
+    // How card is deemed playable
+    public boolean isPlayable (Card currCard, Card lastPlayedCard) {
+        if (currCard.getValue() == lastPlayedCard.getValue()) {
             return true;
-        } else if (currCard.getSuit() == topCard.getSuit()) {
+        } else if (currCard.getSuit() == lastPlayedCard.getSuit()) {
             return true;
         } else return currCard.getValue() == 8;
     }
 
-    //    create playable cards list
-    public void setPlayableCards (Card topCard) {
+    //    Create playable cards list
+    public void setPlayableCards (Card lastPlayedCard) {
         for (Card card : getHand()) {
-            if (isPlayable(card, topCard)) {
+            if (isPlayable(card, lastPlayedCard)) {
                 playableCards.add(card);
             }
         }
@@ -81,12 +81,14 @@ public abstract class Player {
         return playableCards;
     }
 
+    // TODO: add method to clear hand (when start of a new round)
+
     @Override
     public String toString() {
         try {
             StringBuilder sb = new StringBuilder();
             for (Card c : hand) {
-                sb.append(c).append(", ");
+                sb.append(c);
             }
 
             return sb.toString();

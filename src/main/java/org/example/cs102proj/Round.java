@@ -19,15 +19,15 @@ public class Round {
     }
 
     // set the first card of the round
-    public void setFirstCard(RemainingPile remainingPile, DiscardPile discardPile) {
+    public void setFirstCard(DrawPile drawPile, DiscardPile discardPile) {
 
         // obtain starting card
-        Card startingCard = remainingPile.getTopCard();
+        Card startingCard = drawPile.getTopCard();
 
         // if starting card drawn is 8, put it back into the pile and draw a new starting card
         while (startingCard.getValue() == 8) {
-            remainingPile.getListOfCards().addFirst(startingCard);
-            startingCard = remainingPile.getTopCard();
+            drawPile.getListOfCards().addFirst(startingCard);
+            startingCard = drawPile.getTopCard();
         }
 
         // add starting card to discard pile
@@ -51,27 +51,34 @@ public class Round {
     }
 
     public Round(ArrayList<Player> playerPosition) {
+        this.playerPosition = playerPosition;
+
         // create new deck
-        RemainingPile remainingPile = new RemainingPile();
+        DrawPile drawPile = new DrawPile();
+
+        // Store the list of cards from drawPile
+        ArrayList<Card> cardList = drawPile.getListOfCards();
+
 
         // shuffle deck
-        remainingPile.shuffleDeck();
+        drawPile.shuffleDeck(cardList);
+
 
         // create new discard pile
         DiscardPile discardPile = new DiscardPile();
 
         // set the first playing card of the game
-        setFirstCard(remainingPile, discardPile);
+        setFirstCard(drawPile, discardPile);
 
         // each of the 4 players draws 5 cards
         for (int i = 0; i < 5; i++) {
             for (Player p : playerPosition) {
-                p.drawCard(remainingPile.getTopCard());
+                p.drawCard(drawPile.getTopCard());
             }
         }
 
         // each player goes through their turns until the round ends this is going to take forever!
-        while (!roundEnd(playerPosition)) {
+        while (!roundEnd()){
             for (Player currentPlayer : playerPosition) {
                 // current player makes his move
                 // TODO: Implement player play himself
@@ -80,7 +87,7 @@ public class Round {
                 checkPileSize(remainingPile, discardPile);
 
                 // check if player's hand is 0
-                if (roundEnd(playerPosition)) {
+                if (roundEnd()) {
                     break;
                 }
             }
@@ -106,7 +113,7 @@ public class Round {
 
     }
 
-    public boolean roundEnd(ArrayList<Player> playerPosition) {
+    public boolean roundEnd() {
         for (Player p : playerPosition) {
             if (p.getHand().isEmpty()) {
                 clearPlayerHand();
