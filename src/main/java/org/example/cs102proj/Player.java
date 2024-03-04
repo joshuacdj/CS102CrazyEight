@@ -33,7 +33,6 @@ public abstract class Player {
         }
         return points;
     }
-
     public void clearHand() {
         hand.clear();
     }
