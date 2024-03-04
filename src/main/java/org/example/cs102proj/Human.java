@@ -9,7 +9,7 @@ public class Human extends Player {
     }
 
 
-    public Card action(Card topCard, DrawPile deck) {
+    public ArrayList action(Card topCard, DrawPile deck) {
         // Take in user input
         Scanner sc = new Scanner(System.in);
 
@@ -83,7 +83,7 @@ public class Human extends Player {
 
                     if (c.equals(inputCard)) {
                         removeCard(c);
-                        return c;
+//                        return c;
                     }
                 }
 
