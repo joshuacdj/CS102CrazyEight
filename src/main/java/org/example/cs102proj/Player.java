@@ -17,8 +17,9 @@ public abstract class Player {
         this.points = 0;
     }
 
-    // Returns card if player plays a card, else returns false if player skips turn (drew 5 cards)
-    public abstract Card action(Card card, DrawPile deck);
+    // [card, desiredSuit]
+    // Returns null if player skips turn (drew 5 cards)
+    public abstract ArrayList<Object> action(Card card, DrawPile deck);
 
     // Add points to the player depending on the value of the cards left in their hand at the end of a round
     public void addPoints(int points) {
