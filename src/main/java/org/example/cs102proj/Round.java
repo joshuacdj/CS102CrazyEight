@@ -4,6 +4,8 @@ import java.util.ArrayList;
 public class Round {
     private ArrayList<Player> playerPosition;
 
+    private int round = 1;
+
     // setter for player position
     public void setPlayerPosition(ArrayList<Player> playerPosition) {
         // Get the player who went first
@@ -30,6 +32,22 @@ public class Round {
 
         // add starting card to discard pile
         discardPile.addCard(startingCard);
+    }
+
+    public void checkPileSize(RemainingPile remainingPile, DiscardPile discardPile) {
+        if (remainingPile.getNoOfCardsRemaining() <= 5) {
+            discardPile.shuffleDeck();
+            for (Card cards : discardPile.getCards()) {
+                remainingPile.add(cards);
+            }
+            discardPile.clearPile();
+        }
+    }
+
+    public void clearPlayerHand() {
+        for (Player p : playerPosition) {
+            p.getHand().clear();
+        }
     }
 
     public Round(ArrayList<Player> playerPosition) {
@@ -64,10 +82,9 @@ public class Round {
             for (Player currentPlayer : playerPosition) {
                 // current player makes his move
                 // TODO: Implement player play himself
-//                Card cardPlayed = currentPlayer.play();
-//                if (cardPlayed == null) {
-//                    discardPile.addCard(cardPlayed);
-//                }
+                Card cardPlayed = currentPlayer.play();
+
+                checkPileSize(remainingPile, discardPile);
 
                 // check if player's hand is 0
                 if (roundEnd()) {
@@ -99,6 +116,8 @@ public class Round {
     public boolean roundEnd() {
         for (Player p : playerPosition) {
             if (p.getHand().isEmpty()) {
+                clearPlayerHand();
+                round++;
                 return true;
             }
         }
