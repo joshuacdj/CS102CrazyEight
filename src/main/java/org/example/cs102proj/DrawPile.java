@@ -18,6 +18,10 @@ public class DrawPile implements Deck{
         }
     }
 
+    public void add(Card c){
+        listOfCards.add(c);
+    }
+
     @Override
     public void shuffleDeck(){
         Collections.shuffle(listOfCards);
