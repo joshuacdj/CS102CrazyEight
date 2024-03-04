@@ -34,8 +34,8 @@ public class DiscardPile implements Deck{
     }
 
     @Override
-    public void shuffleDeck(ArrayList<Card> cards) {
-        Collections.shuffle(cards);
+    public void shuffleDeck() {
+        Collections.shuffle(listOfCards);
     }
 
     public void clearPile() {

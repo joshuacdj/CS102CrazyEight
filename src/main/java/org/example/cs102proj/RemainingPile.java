@@ -28,7 +28,7 @@ public class RemainingPile implements Deck{
     }
 
     @Override
-    public void shuffleDeck(ArrayList<Card> listOfCards){
+    public void shuffleDeck(){
         Collections.shuffle(listOfCards);
     }
 
