@@ -6,23 +6,26 @@ import java.util.Comparator;
 
 public class GameMaster {
 
-
     private ArrayList<Player> listOfPlayers;
+    private Round round;
 
     public GameMaster(ArrayList<Player> listOfPlayers) {
         this.listOfPlayers = listOfPlayers;
-
-        // Start a new round as long as game has not ended
-        while (!gameEnd()) {
-            Round newRound = new Round(listOfPlayers);
-        }
-
-        // This stores the final ranking of players
-        listOfPlayers = ranking(listOfPlayers);
+        this.round = new Round(listOfPlayers);
     }
 
     public ArrayList<Player> getListOfPlayers() {
         return listOfPlayers;
+    }
+    
+    public void gameStart() {
+
+        // Loop as long as game has not ended
+        while (!gameEnd()) {
+            round.roundStart();
+        }
+
+        this.listOfPlayers = ranking(this.listOfPlayers);
     }
 
     // Checks if game has ended by checking if
