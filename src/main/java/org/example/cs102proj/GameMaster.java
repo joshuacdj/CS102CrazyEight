@@ -36,7 +36,7 @@ public class GameMaster {
     }
 
     // This method returns the list of players according to the rankings
-    ArrayList<Player> ranking(ArrayList<Player> listOfPlayers) {
+    public ArrayList<Player> ranking(ArrayList<Player> listOfPlayers) {
         Comparator<Player> playerComparator = new PlayerCompare();
         Collections.sort(listOfPlayers, playerComparator);
 
