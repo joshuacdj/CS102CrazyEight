@@ -52,13 +52,8 @@ public class Round {
         // create new deck
         DrawPile drawPile = new DrawPile();
 
-        // Store the list of cards from drawPile
-        ArrayList<Card> cardList = drawPile.getListOfCards();
-
-
         // shuffle deck
         drawPile.shuffleDeck();
-
 
         // create new discard pile
         DiscardPile discardPile = new DiscardPile();
@@ -87,7 +82,7 @@ public class Round {
                     discardPile.addCard(cardPlayed);
                 }
 
-                // check if player's hand is 0
+                // check if player's hand is 0 to break out of the for loop
                 if (roundEnd()) {
                     break;
                 }
