@@ -73,14 +73,14 @@ public class Round {
             for (Player currentPlayer : playerPosition) {
                 // current player makes his move
                 // TODO: Implement player play himself
-                Card cardPlayed = currentPlayer.play();
+//                Card cardPlayed = currentPlayer.play();
 
                 checkPileSize(drawPile, discardPile);
 
                 // Add the played card to the discard pile only if it is not null aka skip turn
-                if (cardPlayed != null) {
-                    discardPile.addCard(cardPlayed);
-                }
+//                if (cardPlayed != null) {
+//                    discardPile.addCard(cardPlayed);
+//                }
 
                 // check if player's hand is 0 to break out of the for loop
                 if (roundEnd()) {
