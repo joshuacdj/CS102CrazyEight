@@ -1,5 +1,6 @@
 package org.example.cs102proj;
 
+import javafx.scene.image.Image;
 import java.util.*;
 import java.util.Collections;
 
@@ -8,14 +9,19 @@ public class DrawPile implements Deck{
 
     public DrawPile() {
         listOfCards = new ArrayList<>();
-
         for (int i = 1; i <= 13; i++) {
-
             for (Suit suit : Suit.values()) {
-
-                listOfCards.add(new Card(i, suit));
+                Card cardToAdd = new Card(i, suit);
+                String filename = listOfCards.get(i).getValue() + "_of_" + listOfCards.get(i).getSuit();
+                cardToAdd.setImage(new Image( "./images/" + filename));
+                listOfCards.add(cardToAdd);
             }
         }
+        Image back_card = new Image("./images/back_card");
+    }
+
+    public Card getCard(){
+        return listOfCards.getFirst();
     }
 
     public void add(Card c){
