@@ -6,10 +6,19 @@ import java.util.Comparator;
 
 public class GameMaster {
 
+
     private ArrayList<Player> listOfPlayers;
 
-    GameMaster(ArrayList<Player> listOfPlayers) {
+    public GameMaster(ArrayList<Player> listOfPlayers) {
         this.listOfPlayers = listOfPlayers;
+
+        // Start a new round as long as game has not ended
+        while (!gameEnd()) {
+            Round newRound = new Round(listOfPlayers);
+        }
+
+        // This stores the final ranking of players
+        listOfPlayers = ranking(listOfPlayers);
     }
 
     public ArrayList<Player> getListOfPlayers() {
@@ -26,7 +35,6 @@ public class GameMaster {
 
             // If the current player's score exceeds the maximum allowed, game will end
             if (currentPlayer.getPoints() >= MAXIMUMPOINTS) {
-
                 return true;
             }
         }
@@ -36,10 +44,11 @@ public class GameMaster {
     }
 
     // This method returns the list of players according to the rankings
-    ArrayList<Player> ranking(ArrayList<Player> listOfPlayers) {
+    public ArrayList<Player> ranking(ArrayList<Player> listOfPlayers) {
         Comparator<Player> playerComparator = new PlayerCompare();
         Collections.sort(listOfPlayers, playerComparator);
 
         return listOfPlayers;
     }
+
 }
