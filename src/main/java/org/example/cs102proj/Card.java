@@ -48,10 +48,21 @@ public class Card {
     }
 
 
-
     @Override
     public String toString() {
         return String.format("value: %d suit: %s%n", value, suit);
+    }
+
+    // overriding equals method to check for same card value and suit
+    @Override
+    public boolean equals(Object object) {
+        if (object == null || object.getClass() != getClass()) {
+            return false;
+        }
+        else {
+            Card card = (Card) object;
+            return card.getValue() == getValue() && card.getSuit() == getSuit();
+        }
     }
 
 }
