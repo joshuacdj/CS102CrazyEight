@@ -1,5 +1,7 @@
 package org.example.cs102proj;
 
+import javafx.scene.image.Image;
+
 public class Card {
     /**
      * Stores value of a singular card
@@ -8,12 +10,18 @@ public class Card {
     private final Suit suit;
     // Instance of value and suit
 
+    private Image image;
+
     public Card(int value, Suit suit) {
         // 11 -> J ; 12 -> Q ; 13 -> K
         this.value = value;
         this.suit = suit;
     }
     // Card constructor
+
+    public void setImage(Image image) {
+        this.image = image;
+    }
 
     public int getValue() {
         return value;
