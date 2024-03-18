@@ -4,6 +4,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.event.ActionEvent;
 
+import java.util.*;
+
 public class HelloController {
     @FXML
     private Label welcomeText;
@@ -18,6 +20,14 @@ public class HelloController {
     }
 
     public void onStartGameClick(ActionEvent e) {
-        System.out.println("start game");
+        ArrayList<Player> playerList = new ArrayList<>();
+        playerList.add(new Human("Player1"));
+        playerList.add(new Computer("Bot1"));
+        playerList.add(new Computer("Bot2"));
+        playerList.add(new Computer("Bot3"));
+//
+        GameMaster gm = new GameMaster(playerList);
+//        gm.gameStart();
+        System.out.println("game started");
     }
 }

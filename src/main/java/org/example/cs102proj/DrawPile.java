@@ -12,9 +12,14 @@ public class DrawPile implements Deck{
         for (int i = 1; i <= 13; i++) {
             for (Suit suit : Suit.values()) {
                 Card cardToAdd = new Card(i, suit);
-                String filename = cardToAdd.getValue() + "_of_" + cardToAdd.getSuit();
-                cardToAdd.setImage(new Image( "./images/" + filename));
-                listOfCards.add(cardToAdd);
+                String filename = cardToAdd.getValue() + "_of_" + cardToAdd.getSuit().toString().toLowerCase() + ".png";
+                String filepath = "./images/" + filename;
+                System.out.println(filepath);
+                cardToAdd.setImage(new Image( "/Users/jered/Documents/GitHub/IntelliJProjectTest/src/main/java/org/example/cs102proj/images/1_of_diamonds.png"));
+//                listOfCards.add(cardToAdd);
+
+
+
             }
         }
         Image back_card = new Image("./images/back_card");

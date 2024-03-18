@@ -9,7 +9,6 @@ public class Card {
     private final int value;
     private final Suit suit;
     // Instance of value and suit
-
     private Image image;
 
     public Card(int value, Suit suit) {

@@ -10,8 +10,7 @@ public abstract class Player {
     private String name;
     private int points;
 
-    public Player(ArrayList<Card> hand, String name) {
-        this.hand = hand;
+    public Player(String name) {
         this.name = name;
         // All players should have 0 points initially
         this.points = 0;

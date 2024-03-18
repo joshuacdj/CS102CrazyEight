@@ -4,8 +4,8 @@ import java.util.*;
 
 public class Human extends Player {
 
-    public Human(ArrayList<Card> hand, String name) {
-        super(hand, name);
+    public Human(String name) {
+        super(name);
     }
 
 
